@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: new MyButton(title: 'mybutton'),
+//      home: new MyButton(title: 'mybutton'),
+    home: new InkWellButton(),
     );
   }
 }
@@ -49,5 +50,33 @@ class MyButton extends StatelessWidget {
       ),
     );
     return throw UnimplementedError();
+  }
+}
+
+class InkWellButton extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('InkWell'),
+      ),
+      body: Builder(
+        builder: (BuildContext context) {
+          return new Center(
+            child: new InkWell(
+              onTap: (){
+                Scaffold.of(context).showSnackBar(new SnackBar(
+                    content: new Text('tap'),));
+              },
+              child: new Container(
+                padding: new EdgeInsets.all(12.0),
+                child: new Text('Flat Button'),
+              ),
+            ),
+          );
+        },
+      )
+    );
+    throw UnimplementedError();
   }
 }
